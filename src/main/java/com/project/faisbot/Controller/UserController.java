@@ -23,11 +23,6 @@ public class UserController {
 
         return userrepo.save(user);
     }
-    @GetMapping("/users")
-    public List<User> users (){
-
-        return userrepo.findAll();
-    }
 
     @PostMapping("/Profile")
     public User profile (@RequestBody @NotNull User newuser, @NotNull HttpSession session){

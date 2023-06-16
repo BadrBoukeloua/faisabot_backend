@@ -11,9 +11,13 @@ public class User {
     @GeneratedValue
     private Integer id;
     private String name;
+    private String surname;
+    private String entp_name;
     private String email;
+    private int phone;
     private String password;
-    private boolean isAdmin;
+    private String state;
+    private boolean admin;
 
     public User() {
 
@@ -35,12 +39,36 @@ public class User {
         this.name = name;
     }
 
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getEntp_name() {
+        return entp_name;
+    }
+
+    public void setEntp_name(String entp_name) {
+        this.entp_name = entp_name;
+    }
+
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getPhone() {
+        return phone;
+    }
+
+    public void setPhone(int phone) {
+        this.phone = phone;
     }
 
     public String getPassword() {
@@ -51,11 +79,19 @@ public class User {
         this.password = password;
     }
 
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
     public boolean isAdmin() {
-        return isAdmin;
+        return admin;
     }
 
     public void setAdmin(boolean admin) {
-        isAdmin = admin;
+        this.admin = admin;
     }
 }
