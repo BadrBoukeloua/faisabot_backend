@@ -1,15 +1,15 @@
-package com.project.faisbot.model;
+package com.project.faisabot.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 
-@Entity
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "User")
 public class User {
 
     @Id
-    @GeneratedValue
-    private Integer id;
+    private ObjectId id;
     private String name;
     private String surname;
     private String entp_name;
@@ -23,11 +23,11 @@ public class User {
 
     }
 
-    public Integer getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 

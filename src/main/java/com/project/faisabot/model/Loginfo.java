@@ -1,4 +1,4 @@
-package com.project.faisbot.model;
+package com.project.faisabot.model;
 
 public class Loginfo {
 

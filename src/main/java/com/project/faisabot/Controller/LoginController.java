@@ -1,23 +1,22 @@
-package com.project.faisbot.Controller;
+package com.project.faisabot.Controller;
 
-import com.project.faisbot.Repository.UserRepo;
-import com.project.faisbot.model.Loginfo;
-import com.project.faisbot.model.User;
+import com.project.faisabot.Repository.UserRepo;
+import com.project.faisabot.model.Loginfo;
+import com.project.faisabot.model.User;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
+@CrossOrigin
+
 public class LoginController {
 
     @Autowired
     private UserRepo userrepo;
 
-    @GetMapping("/Connecter")
+    @PostMapping ("/Connecter")
     public User Login(@RequestBody Loginfo info, HttpSession session) {
         String email = info.getEmail();
         String password = info.getPassword();
