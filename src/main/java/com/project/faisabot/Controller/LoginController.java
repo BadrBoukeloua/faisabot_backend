@@ -3,6 +3,7 @@ package com.project.faisabot.Controller;
 import com.project.faisabot.Repository.UserRepo;
 import com.project.faisabot.model.Loginfo;
 import com.project.faisabot.model.User;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,8 @@ public class LoginController {
     private UserRepo userrepo;
 
     @PostMapping ("/Connecter")
-    public User Login(@RequestBody Loginfo info, HttpSession session) {
+    public User Login(@RequestBody Loginfo info, HttpServletRequest request) {
+        HttpSession session = request.getSession();
         String email = info.getEmail();
         String password = info.getPassword();
         if (session.getAttribute("Admin") == null || session.getAttribute("User") == null ) {
@@ -56,8 +58,8 @@ public class LoginController {
     }
 
     @GetMapping("/ses")
-    public User ses(HttpSession session){
-
+    public User ses(HttpServletRequest request){
+        HttpSession session = request.getSession();
         if(session.getAttribute("Admin") != null) {
          return (User) session.getAttribute("Admin");
         }
