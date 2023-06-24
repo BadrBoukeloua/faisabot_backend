@@ -1,8 +1,10 @@
 package com.project.faisabot.Controller;
 
 import com.project.faisabot.Repository.ForumRepo;
+import com.project.faisabot.Repository.QuestionnaireRepo;
 import com.project.faisabot.Repository.UserRepo;
 import com.project.faisabot.model.Forum;
+import com.project.faisabot.model.Questionnaire;
 import com.project.faisabot.model.User;
 import jakarta.servlet.http.HttpSession;
 //import org.jetbrains.annotations.NotNull;
@@ -21,12 +23,10 @@ public class UserController {
     private UserRepo userrepo ;
     @Autowired
     private ForumRepo forumRepo ;
+    @Autowired
+    private QuestionnaireRepo quesRepo ;
 
-    @PostMapping("/Inscrire")
-    public User newUser(@RequestBody User user){
 
-        return userrepo.save(user);
-    }
 
     @PostMapping("/Profile")
     public User profile (@RequestBody  User newuser,  HttpSession session){
@@ -39,7 +39,10 @@ public class UserController {
     public Forum NewForum(@RequestBody Forum forum, HttpSession session){
         forum.setForum_user(new User());
         forum.getForum_user().setId(((User) session.getAttribute("User")).getId());
-        return forumRepo.save(forum);
+        Questionnaire questionnaire = new Questionnaire();
+        questionnaire.setId(forumRepo.save(forum).getForum_id());
+        quesRepo.save(questionnaire);
+        return forum;
     }
 
     @PostMapping("/MyForums")

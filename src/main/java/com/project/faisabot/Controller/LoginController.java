@@ -17,9 +17,15 @@ public class LoginController {
     @Autowired
     private UserRepo userrepo;
 
+
+    @PostMapping("/Inscrire")
+    public User newUser(@RequestBody User user){
+
+        return userrepo.save(user);
+    }
     @PostMapping ("/Connecter")
-    public User Login(@RequestBody Loginfo info, HttpServletRequest request) {
-        HttpSession session = request.getSession();
+    public User Login(@RequestBody Loginfo info, HttpSession session){
+
         String email = info.getEmail();
         String password = info.getPassword();
         if (session.getAttribute("Admin") == null || session.getAttribute("User") == null ) {
@@ -58,8 +64,8 @@ public class LoginController {
     }
 
     @GetMapping("/ses")
-    public User ses(HttpServletRequest request){
-        HttpSession session = request.getSession();
+    public User ses(HttpSession session){
+
         if(session.getAttribute("Admin") != null) {
          return (User) session.getAttribute("Admin");
         }
