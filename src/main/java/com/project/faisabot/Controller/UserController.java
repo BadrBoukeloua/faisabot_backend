@@ -45,7 +45,7 @@ public class UserController {
         return forum;
     }
 
-    @PostMapping("/MyForums")
+    @GetMapping ("/MyForums")
     public List<Forum> MyForums (HttpSession session){
         User user = (User) session.getAttribute("User");
         ObjectId userid = user.getId();
