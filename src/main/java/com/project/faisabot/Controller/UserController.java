@@ -40,9 +40,10 @@ public class UserController {
         forum.setForum_user(new User());
         forum.getForum_user().setId(((User) session.getAttribute("User")).getId());
         Questionnaire questionnaire = new Questionnaire();
-        questionnaire.setId(forumRepo.save(forum).getForum_id());
+        Forum saverforum = forumRepo.save(forum);
+        questionnaire.setId(saverforum.getForum_id());
         quesRepo.save(questionnaire);
-        return forum;
+        return saverforum;
     }
 
     @GetMapping ("/MyForums")
@@ -55,6 +56,11 @@ public class UserController {
             forum.setForum_user(user);
         }
         return forumList;
+    }
+    @PostMapping("/Forum")
+    private Forum Forum(String idstring){
+        ObjectId id = new ObjectId(idstring);
+        return forumRepo.findById(id).get();
     }
 
 }

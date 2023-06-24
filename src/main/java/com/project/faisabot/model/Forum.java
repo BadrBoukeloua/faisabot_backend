@@ -14,6 +14,7 @@ public class Forum {
     @Id
     private ObjectId forum_id;
 
+
     private User forum_user;
     private List<Question> questoins;
 
@@ -27,6 +28,7 @@ public class Forum {
     public void setForum_id(ObjectId forum_id) {
         this.forum_id = forum_id;
     }
+
 
     public User getForum_user() {
         return forum_user;
